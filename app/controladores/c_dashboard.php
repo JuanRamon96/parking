@@ -13,6 +13,7 @@ class dashboard
     public function _consultar()
     {
         $omodelo = new m_modelo();
+        asegurarColumnasTablets($omodelo);
         extract($_POST);
 
         $tipo = isset($tipo) ? trim($tipo) : '';
@@ -43,7 +44,7 @@ class dashboard
                 $palabras = explode(' ', trim($buscar));
                 for ($i = 0; $i < count($palabras); $i++) {
                     $p = $omodelo->escape($palabras[$i]);
-                    $where .= " AND CONCAT_WS(' ', ID_Registro, IFNULL(Folio_Tablet, ''), IFNULL(Dispositivo, ''), Placas, Tipo, Descripcion, Estatus, Total, DATE_FORMAT(Entrada, '%d/%m/%Y %H:%i'), IFNULL(DATE_FORMAT(Salida, '%d/%m/%Y %H:%i'), '')) REGEXP '$p'";
+                    $where .= " AND CONCAT_WS(' ', ID_Registro, IFNULL(Folio_Tablet, ''), IFNULL(Dispositivo, ''), IFNULL(Dispositivo_Cobro, ''), Placas, Tipo, Descripcion, Estatus, Total, DATE_FORMAT(Entrada, '%d/%m/%Y %H:%i'), IFNULL(DATE_FORMAT(Salida, '%d/%m/%Y %H:%i'), '')) REGEXP '$p'";
                 }
             }
 
@@ -55,7 +56,8 @@ class dashboard
 
             $query = "SELECT 
                 ID_Registro,
-                Dispositivo,
+                " . sqlClaveEntrada() . " AS ClaveEntrada,
+                " . sqlClaveCobro() . " AS ClaveCobro,
                 Folio_Tablet,
                 Placas,
                 Tipo,
@@ -71,7 +73,8 @@ class dashboard
             $arreglo = array('data' => array(), 'totales' => array('NumRows' => $numRows));
 
             if ($rows != 'si' && $omodelo->numerofilas > 0) {
-                for ($i = 0; $i < $omodelo->numerofilas; $i++) {
+                $total = $omodelo->numerofilas;
+                for ($i = 0; $i < $total; $i++) {
                     $r = $rows[$i];
                     $estatusTexto = trim($r['Estatus']);
                     $badgeEstatus = '<span class="badge bg-secondary">' . htmlspecialchars($estatusTexto) . '</span>';
@@ -89,7 +92,8 @@ class dashboard
                     }
 
                     $folioMostrar = !empty($r['Folio_Tablet']) ? htmlspecialchars($r['Folio_Tablet']) : str_pad($r['ID_Registro'], 5, '0', STR_PAD_LEFT);
-                    $dispositivoBadge = '<span class="badge bg-light text-dark border px-2 py-1 text-nowrap"><i class="fa-solid fa-tablet-screen-button me-1 text-primary"></i>' . htmlspecialchars($r['Dispositivo'] ?: 'Tablet 1') . '</span>';
+                    $cobrado = in_array($estatusTexto, array('Completado', 'Cobrado'), true);
+                    $dispositivoBadge = celdaDispositivoRegistro($omodelo, $r['ClaveEntrada'], $r['ClaveCobro'], $cobrado);
 
                     $arreglo['data'][$i] = array(
                         'ID' => $r['ID_Registro'],

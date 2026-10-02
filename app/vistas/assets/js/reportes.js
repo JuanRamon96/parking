@@ -59,8 +59,11 @@ function cargarTabletsReporte(callback) {
     if (!data || data.session_expired) return;
 
     var html = '<option value="">Todas las tablets</option>';
+    // Cada tablet llega como { id, nombre }: el id es su identificador único
     (data.tablets || []).forEach(function (t) {
-      html += '<option value="' + escaparHtml(t) + '">' + escaparHtml(t) + '</option>';
+      var id = (typeof t === 'object') ? t.id : t;
+      var nombre = (typeof t === 'object') ? t.nombre : t;
+      html += '<option value="' + escaparHtml(id) + '">' + escaparHtml(nombre) + '</option>';
     });
     $sel.html(html);
     if (actual && $sel.find('option').filter(function () { return this.value === actual; }).length) {
@@ -347,11 +350,12 @@ function pintarResumenTablets(lista) {
     tot.cortes += t.cortes;
     tot.diferencia += t.diferencia;
 
-    var resaltar = (seleccionada && seleccionada === t.dispositivo) ? ' class="table-success"' : '';
+    var resaltar = (seleccionada && seleccionada === t.id) ? ' class="table-success"' : '';
+    var cobradosTxt = t.cobrados + (t.deOtras ? '<br><small class="text-muted">' + t.deOtras + ' entraron por otra tablet</small>' : '');
     html += '<tr' + resaltar + '>' +
       '<td><span class="badge bg-light text-dark border px-2 py-1 text-nowrap"><i class="fa-solid fa-tablet-screen-button me-1 text-primary"></i>' + escaparHtml(t.dispositivo) + '</span></td>' +
       '<td>' + t.vehiculos + '</td>' +
-      '<td>' + t.cobrados + '</td>' +
+      '<td>' + cobradosTxt + '</td>' +
       '<td><span class="dinero fw-bold text-success">' + Number(t.ingresos).toFixed(2) + '</span></td>' +
       '<td>' + t.cortes + '</td>' +
       '<td>' + badgeDiferenciaJs(t.diferencia) + '</td>' +
@@ -419,7 +423,9 @@ function verDetalleCorte(idCorte) {
       tarjeta('Balance esperado', formatoMoneda(c.balance)) +
       tarjeta('Efectivo contado', formatoMoneda(c.montoCierre)) +
       tarjeta('Diferencia de caja', badgeDiferenciaJs(c.diferencia)) +
-      tarjeta('Vehículos', data.numCobrados + ' cobrados' + (data.numPendientes ? ' · ' + data.numPendientes + ' pendientes' : ''))
+      tarjeta('Vehículos', data.numCobrados + ' cobrados' +
+        (data.numDeOtras ? ' (' + data.numDeOtras + ' de otra tablet)' : '') +
+        (data.numPendientes ? ' · ' + data.numPendientes + ' pendientes' : ''))
     );
 
     // Cuadre: ingresos que reportó la tablet vs. suma de los registros
@@ -440,7 +446,8 @@ function verDetalleCorte(idCorte) {
 
     var filas = '';
     data.registros.forEach(function (r) {
-      var vehiculo = escaparHtml(r.tipo) + (r.descripcion ? '<br><small class="text-muted">' + escaparHtml(r.descripcion) + '</small>' : '');
+      var vehiculo = escaparHtml(r.tipo) + (r.descripcion ? '<br><small class="text-muted">' + escaparHtml(r.descripcion) + '</small>' : '') +
+        (r.origen ? '<br><small class="text-primary"><i class="bi bi-arrow-left-right me-1"></i>Entró por ' + escaparHtml(r.origen) + '</small>' : '');
       filas += '<tr>' +
         '<td><strong>#' + escaparHtml(r.folio) + '</strong></td>' +
         '<td><span class="badge bg-light text-dark border font-monospace">' + escaparHtml(r.placas || 'S/P') + '</span></td>' +

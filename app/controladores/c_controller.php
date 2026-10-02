@@ -1,6 +1,7 @@
 <?php
 date_default_timezone_set('America/Mexico_City');
 include_once __DIR__ . '/../modelo/m_modelo.php';
+include_once __DIR__ . '/identidad_tablets.php';
 include_once __DIR__ . '/c_login.php';
 include_once __DIR__ . '/c_dashboard.php';
 include_once __DIR__ . '/c_reportes.php';

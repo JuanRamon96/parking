@@ -24,12 +24,32 @@ class dispositivos
 
         $sub = $rowSub[0];
 
-        // Consultar tablets activas en la BD del inquilino
+        // Tablets del estacionamiento, identificadas por su ID único (el nombre puede repetirse).
+        // Se juntan entradas (tablet donde entró el auto) y cobros (tablet que cobró).
         $mTenant = new m_modelo();
+        asegurarColumnasTablets($mTenant);
+
+        $actividad = $mTenant->_consultar("SELECT Clave, MAX(Fecha) AS Ultima, SUM(Entradas) AS Entradas, SUM(Cobros) AS Cobros FROM (
+                SELECT " . sqlClaveEntrada() . " AS Clave, MAX(Entrada) AS Fecha, COUNT(*) AS Entradas, 0 AS Cobros
+                FROM registros GROUP BY Clave
+                UNION ALL
+                SELECT " . sqlClaveCobro() . ", MAX(Salida), 0, COUNT(*)
+                FROM registros WHERE Estatus IN ('Completado', 'Cobrado') GROUP BY 1
+            ) t GROUP BY Clave ORDER BY Ultima DESC");
+
         $tablets = [];
-        $resTablets = $mTenant->_consultar("SELECT Dispositivo, MAX(Entrada) as Ultima_Actividad, COUNT(ID_Registro) as Total_Vehiculos FROM registros GROUP BY Dispositivo ORDER BY Ultima_Actividad DESC");
-        if (is_array($resTablets)) {
-            $tablets = $resTablets;
+        if (is_array($actividad)) {
+            foreach ($actividad as $a) {
+                $clave = (string)$a['Clave'];
+                $esViejo = strpos($clave, 'nombre:') === 0;
+                $tablets[] = [
+                    'Dispositivo'      => nombreTablet($mTenant, $clave),
+                    'ID_Tablet'        => $esViejo ? '' : $clave,
+                    'Ultima_Actividad' => $a['Ultima'] ? date('d/m/Y H:i', strtotime($a['Ultima'])) : '',
+                    'Total_Vehiculos'  => (int)$a['Entradas'],
+                    'Total_Cobros'     => (int)$a['Cobros']
+                ];
+            }
         }
 
         // Construir URL base del servidor

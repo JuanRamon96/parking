@@ -105,6 +105,7 @@ class m_modelo extends conexion
         $this->link->query("CREATE TABLE IF NOT EXISTS `detalles_caja` (
             `ID_Detalle_Caja` int(11) NOT NULL AUTO_INCREMENT,
             `Dispositivo` varchar(60) NOT NULL DEFAULT 'Tablet 1',
+            `Dispositivo_UID` varchar(40) DEFAULT NULL,
             `FK_Caja` int(11) NOT NULL,
             `Fecha_Apertura` datetime NOT NULL,
             `Monto_Apertura` double NOT NULL,
@@ -114,7 +115,8 @@ class m_modelo extends conexion
             `Balance` double NOT NULL DEFAULT 0,
             `Diferencia` double NOT NULL DEFAULT 0,
             PRIMARY KEY (`ID_Detalle_Caja`),
-            KEY `FK_Caja` (`FK_Caja`)
+            KEY `FK_Caja` (`FK_Caja`),
+            KEY `Dispositivo_UID` (`Dispositivo_UID`, `Fecha_Apertura`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
 
         // 4. Tabla registros (Entradas y salidas de vehículos)

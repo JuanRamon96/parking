@@ -152,15 +152,21 @@
                       <i class="bi bi-tablet-screen-button fs-5"></i>
                     </div>
                     <div>
-                      <strong class="d-block text-dark small">${tab.Dispositivo || 'Tablet 1'}</strong>
+                      <strong class="d-block text-dark small">${escaparTexto(tab.Dispositivo || 'Tablet 1')}</strong>
+                      ${tab.ID_Tablet ? `<span class="text-muted font-monospace d-block" style="font-size: 0.7rem;" title="ID único de la tablet">ID: ${escaparTexto(tab.ID_Tablet)}</span>` : ''}
                       <span class="text-muted" style="font-size: 0.75rem;">
-                        <i class="bi bi-clock me-1"></i>Última actividad: ${tab.Ultima_Actividad || 'Hoy'}
+                        <i class="bi bi-clock me-1"></i>Última actividad: ${escaparTexto(tab.Ultima_Actividad || 'Hoy')}
                       </span>
                     </div>
                   </div>
-                  <span class="badge bg-light text-dark border small fw-bold">
-                    ${tab.Total_Vehiculos} autos
-                  </span>
+                  <div class="text-end">
+                    <span class="badge bg-light text-dark border small fw-bold d-block mb-1">
+                      ${tab.Total_Vehiculos} entradas
+                    </span>
+                    <span class="badge bg-success-subtle text-success border border-success-subtle small fw-bold d-block">
+                      ${tab.Total_Cobros || 0} cobros
+                    </span>
+                  </div>
                 </div>
               `);
             });
@@ -172,6 +178,12 @@
       }
     });
   };
+
+  function escaparTexto(t) {
+    return String(t == null ? '' : t)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
 
   window.copiarCodigo = function() {
     if (!window.codigoActual) return;
