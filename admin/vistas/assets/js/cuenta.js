@@ -149,10 +149,6 @@ function v_cuenta() {
   }
 }
 
-function v_perfil() {
-  v_cuenta();
-}
-
 function cargarDatosCuenta() {
   $.ajax({
     url: 'index.php',

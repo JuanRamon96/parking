@@ -8,7 +8,6 @@ include_once __DIR__ . '/c_reportes.php';
 include_once __DIR__ . '/c_cuenta.php';
 include_once __DIR__ . '/c_dispositivos.php';
 include_once __DIR__ . '/c_suscripcion.php';
-include_once __DIR__ . '/c_perfil.php';
 include_once __DIR__ . '/c_registro.php';
 include_once __DIR__ . '/c_tarifas.php';
 

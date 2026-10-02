@@ -15,7 +15,6 @@
   <link rel="stylesheet" href="vistas/assets/libs/bootstrap-icons/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="vistas/assets/libs/apexcharts/apexcharts.css">
-  <link rel="stylesheet" href="vistas/assets/libs/flatpickr/flatpickr.min.css">
 
   <!-- Main Design System & Custom Stylesheet -->
   <link rel="stylesheet" href="vistas/assets/css/main.css?v=#v#">
@@ -413,7 +412,6 @@
   <!-- Librerías de plantilla Spark Admin & Plugins -->
   <script src="vistas/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vistas/assets/libs/apexcharts/apexcharts.min.js"></script>
-  <script src="vistas/assets/libs/flatpickr/flatpickr.min.js"></script>
   <script src="vistas/assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
   <script src="vistas/assets/plugins/sweetalert/dist/sweetalert2.all.min.js"></script>
   <script src="vistas/assets/plugins/myDataTable/js/myDataTable.js?v=#v#"></script>

@@ -15,8 +15,6 @@
   <link rel="stylesheet" href="vistas/assets/libs/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="vistas/assets/libs/bootstrap-icons/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="vistas/assets/libs/apexcharts/apexcharts.css">
-  <link rel="stylesheet" href="vistas/assets/libs/flatpickr/flatpickr.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
   <!-- Main Design System & Custom Stylesheet (Same as /app) -->
