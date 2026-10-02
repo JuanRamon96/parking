@@ -1,0 +1,13 @@
+{
+    "name": "juan/correo",
+    "type": "project",
+    "require": {
+        "phpmailer/phpmailer": "6.1"
+    },
+    "authors": [
+        {
+            "name": "JuanRamon96",
+            "email": "jramongarciaangel@gmail.com"
+        }
+    ]
+}

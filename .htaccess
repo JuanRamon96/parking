@@ -1,0 +1,13 @@
+# ParkingPro - Apache Configuration
+DirectoryIndex index.php index.html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Canonicalize ONLY GET requests from browser address bar (exclude POST and AJAX)
+    RewriteCond %{REQUEST_METHOD} =GET
+    RewriteCond %{HTTP:X-Requested-With} !^XMLHttpRequest$ [NC]
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^?]+)/index\.php(\?[^\s]*)? [NC]
+    RewriteRule ^ %1/%2 [R=301,L]
+</IfModule>
+

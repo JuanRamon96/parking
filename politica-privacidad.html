@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Política de privacidad | ParkingPro</title>
+  <meta name="description" content="Aviso de privacidad de ParkingPro: qué datos trata la app de estacionamientos, para qué los usa, con quién los comparte y cómo ejercer tus derechos ARCO.">
+  <meta name="robots" content="index, follow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root {
+      --senal: #1E3A8A;       /* azul de señal de estacionamiento */
+      --senal-claro: #E8EEFB;
+      --asfalto: #2B2F36;
+      --asfalto-claro: #3A3F48;
+      --linea: #F2C230;       /* línea amarilla de cajón */
+      --papel: #FAFBFC;
+      --tinta: #1F2933;
+      --tinta-suave: #52606D;
+      --borde: #DDE3EA;
+      --fuente: "Barlow", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      --fuente-titulo: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    body {
+      font-family: var(--fuente);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--tinta);
+      background: var(--papel);
+    }
+
+    a { color: var(--senal); text-underline-offset: 3px; }
+    a:hover { color: #162C6B; }
+    :focus-visible { outline: 3px solid var(--linea); outline-offset: 2px; border-radius: 2px; }
+
+    /* ---------- Barra superior ---------- */
+    .barra {
+      background: var(--asfalto);
+      color: #fff;
+    }
+    .barra .marca {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      color: #fff;
+      text-decoration: none;
+      font-family: var(--fuente-titulo);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: .01em;
+    }
+    .senal-p {
+      display: inline-grid;
+      place-items: center;
+      width: 2.1rem;
+      height: 2.1rem;
+      background: var(--senal);
+      border: 2px solid #fff;
+      border-radius: 6px;
+      font-family: var(--fuente-titulo);
+      font-weight: 700;
+      font-size: 1.35rem;
+      line-height: 1;
+      color: #fff;
+    }
+    .barra .enlace-sitio {
+      color: #CBD2D9;
+      text-decoration: none;
+      font-size: .95rem;
+    }
+    .barra .enlace-sitio:hover { color: #fff; }
+
+    /* ---------- Encabezado: señal de estacionamiento sobre asfalto ---------- */
+    .portada {
+      background: var(--asfalto-claro);
+      color: #fff;
+      position: relative;
+      padding: 3rem 0 3.5rem;
+    }
+    /* Línea amarilla discontinua, como la del carril */
+    .portada::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 6px;
+      background: repeating-linear-gradient(90deg, var(--linea) 0 48px, transparent 48px 80px);
+    }
+    .portada .senal-grande {
+      width: 7.5rem;
+      height: 7.5rem;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      background: var(--senal);
+      border: 5px solid #fff;
+      border-radius: 14px;
+      box-shadow: 0 0 0 5px var(--senal);
+      font-family: var(--fuente-titulo);
+      font-weight: 700;
+      font-size: 5.5rem;
+      line-height: 1;
+    }
+    .portada h1 {
+      font-family: var(--fuente-titulo);
+      font-weight: 700;
+      font-size: clamp(2.3rem, 5vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 .5rem;
+    }
+    .portada .subtitulo {
+      color: #D5DAE1;
+      font-size: 1.1rem;
+      max-width: 38rem;
+      margin: 0;
+    }
+    .portada .fechas {
+      margin-top: 1.25rem;
+      font-size: .95rem;
+      color: #CBD2D9;
+    }
+    .portada .fechas i { color: var(--linea); margin-right: .35rem; }
+
+    @media (max-width: 575.98px) {
+      .portada { padding: 2rem 0 2.5rem; }
+      .portada .senal-grande {
+        width: 4.5rem; height: 4.5rem; font-size: 3.2rem;
+        border-width: 3px; box-shadow: 0 0 0 3px var(--senal); border-radius: 10px;
+      }
+    }
+
+    /* ---------- Índice ---------- */
+    .indice {
+      position: sticky;
+      top: 1.5rem;
+    }
+    .indice h2 {
+      font-family: var(--fuente-titulo);
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: .75rem;
+      color: var(--asfalto);
+    }
+    .indice .nav-link {
+      color: var(--tinta-suave);
+      padding: .35rem 0 .35rem .85rem;
+      border-left: 3px solid var(--borde);
+      font-size: .97rem;
+      line-height: 1.35;
+    }
+    .indice .nav-link:hover { color: var(--senal); }
+    .indice .nav-link.active {
+      color: var(--senal);
+      font-weight: 600;
+      border-left-color: var(--linea);
+      background: transparent;
+    }
+    .btn-indice {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      border: 1px solid var(--borde);
+      color: var(--tinta);
+      font-weight: 600;
+      padding: .75rem 1rem;
+    }
+    .btn-indice:hover, .btn-indice:focus { background: #fff; border-color: var(--senal); color: var(--senal); }
+    .btn-indice .fa-chevron-down { transition: transform .2s; }
+    .btn-indice[aria-expanded="true"] .fa-chevron-down { transform: rotate(180deg); }
+    #indiceMovil .nav-link { border-left: 0; padding-left: 0; }
+
+    /* ---------- Contenido ---------- */
+    .contenido { max-width: 46rem; }
+
+    .en-corto {
+      background: #fff;
+      border: 1px solid var(--borde);
+      border-left: 6px solid var(--senal);
+      border-radius: 8px;
+      padding: 1.5rem 1.5rem 1rem;
+      margin-bottom: 3rem;
+    }
+    .en-corto h2 {
+      font-family: var(--fuente-titulo);
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--asfalto);
+    }
+    .en-corto ul { list-style: none; padding: 0; margin: 0; }
+    .en-corto li {
+      display: flex;
+      gap: .85rem;
+      margin-bottom: .85rem;
+    }
+    .en-corto li i {
+      color: var(--senal);
+      width: 1.25rem;
+      text-align: center;
+      margin-top: .3rem;
+      flex: 0 0 auto;
+    }
+
+    .seccion { margin-bottom: 3rem; }
+    .seccion h2 {
+      font-family: var(--fuente-titulo);
+      font-weight: 700;
+      font-size: clamp(1.55rem, 3vw, 1.9rem);
+      line-height: 1.15;
+      color: var(--asfalto);
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding-bottom: .6rem;
+      margin-bottom: 1.1rem;
+      border-bottom: 1px solid var(--borde);
+    }
+    .seccion h2 .icono {
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 6px;
+      background: var(--senal-claro);
+      color: var(--senal);
+      font-size: 1rem;
+    }
+    .seccion h3 {
+      font-family: var(--fuente);
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin: 1.5rem 0 .5rem;
+      color: var(--tinta);
+    }
+    .seccion ul { padding-left: 1.2rem; }
+    .seccion li { margin-bottom: .4rem; }
+
+    .tabla-envoltura {
+      overflow-x: auto;
+      border: 1px solid var(--borde);
+      border-radius: 8px;
+      background: #fff;
+      margin: 1rem 0;
+    }
+    .tabla-envoltura table { margin: 0; min-width: 34rem; }
+    .tabla-envoltura th {
+      background: var(--asfalto);
+      color: #fff;
+      font-weight: 600;
+      font-size: .95rem;
+      white-space: nowrap;
+    }
+    .tabla-envoltura td { font-size: .97rem; vertical-align: top; }
+
+    .nota {
+      background: #FFF8E1;
+      border: 1px solid #F5DC8A;
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+      display: flex;
+      gap: .8rem;
+      margin: 1rem 0;
+    }
+    .nota i { color: #9A6B00; margin-top: .3rem; }
+
+    /* Datos que el titular del sitio debe completar */
+    .completar {
+      background: #FFF1C2;
+      border-bottom: 2px dashed #C99A00;
+      padding: 0 .2rem;
+      border-radius: 2px;
+    }
+
+    .tarjeta-contacto {
+      background: var(--asfalto);
+      color: #fff;
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .tarjeta-contacto a { color: #fff; }
+    .tarjeta-contacto dt { color: #CBD2D9; font-weight: 500; font-size: .92rem; }
+    .tarjeta-contacto dd { margin-bottom: .9rem; font-weight: 600; }
+
+    /* ---------- Pie ---------- */
+    .pie {
+      background: var(--asfalto);
+      color: #CBD2D9;
+      font-size: .95rem;
+      padding: 2rem 0;
+      margin-top: 2rem;
+    }
+    .pie a { color: #fff; }
+
+    .btn-arriba {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 8px;
+      background: var(--senal);
+      color: #fff;
+      border: 2px solid #fff;
+      display: none;
+      place-items: center;
+      z-index: 1030;
+    }
+    .btn-arriba.visible { display: grid; }
+    .btn-arriba:hover { background: #162C6B; color: #fff; }
+
+    @media print {
+      .barra, .indice, .btn-indice, #indiceMovil, .btn-arriba { display: none !important; }
+      .portada { background: #fff; color: #000; }
+      .portada::after { display: none; }
+      .portada .subtitulo, .portada .fechas { color: #333; }
+      .col-lg-3 { display: none; }
+      .col-lg-9 { width: 100%; }
+    }
+  </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#indiceEscritorio" data-bs-root-margin="0px 0px -65%" tabindex="0">
+
+  <!-- Barra superior -->
+  <nav class="barra py-2">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a class="marca" href="https://parkingpro.top/">
+        <span class="senal-p" aria-hidden="true">P</span>
+        ParkingPro
+      </a>
+      <a class="enlace-sitio" href="https://parkingpro.top/">
+        <i class="fa-solid fa-arrow-left me-1" aria-hidden="true"></i> Volver al sitio
+      </a>
+    </div>
+  </nav>
+
+  <!-- Encabezado -->
+  <header class="portada">
+    <div class="container">
+      <div class="d-flex align-items-center gap-4">
+        <div class="senal-grande" aria-hidden="true">P</div>
+        <div>
+          <h1>Política de privacidad</h1>
+          <p class="subtitulo">
+            Cómo tratamos los datos en la app y el panel web de ParkingPro.
+          </p>
+        </div>
+      </div>
+      <p class="fechas mb-0">
+        <i class="fa-regular fa-calendar" aria-hidden="true"></i>Última actualización: 24 de septiembre de 2026
+      </p>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <div class="row g-5">
+
+      <!-- Índice (escritorio) -->
+      <aside class="col-lg-3 d-none d-lg-block">
+        <nav class="indice" id="indiceEscritorio" aria-label="Contenido de la política">
+          <h2>Contenido</h2>
+          <div class="nav flex-column">
+            <a class="nav-link" href="#responsable">Responsable</a>
+            <a class="nav-link" href="#datos">Datos que recabamos</a>
+            <a class="nav-link" href="#finalidades">Para qué los usamos</a>
+            <a class="nav-link" href="#permisos">Permisos de la app</a>
+            <a class="nav-link" href="#terceros">Compartir datos</a>
+            <a class="nav-link" href="#conservacion">Conservación y seguridad</a>
+            <a class="nav-link" href="#derechos">Tus derechos</a>
+            <a class="nav-link" href="#cambios">Cambios a esta política</a>
+            <a class="nav-link" href="#contacto">Contacto</a>
+          </div>
+        </nav>
+      </aside>
+
+      <div class="col-lg-9">
+        <div class="contenido">
+
+          <!-- Índice (móvil) -->
+          <div class="d-lg-none mb-4">
+            <button class="btn btn-indice rounded-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#indiceMovil" aria-expanded="false" aria-controls="indiceMovil">
+              <span><i class="fa-solid fa-list-ul me-2" aria-hidden="true"></i>Contenido</span>
+              <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="collapse" id="indiceMovil">
+              <nav class="nav flex-column bg-white border border-top-0 rounded-bottom-3 px-3 py-2" aria-label="Contenido de la política">
+                <a class="nav-link" href="#responsable">Responsable</a>
+                <a class="nav-link" href="#datos">Datos que recabamos</a>
+                <a class="nav-link" href="#finalidades">Para qué los usamos</a>
+                <a class="nav-link" href="#permisos">Permisos de la app</a>
+                <a class="nav-link" href="#terceros">Compartir datos</a>
+                <a class="nav-link" href="#conservacion">Conservación y seguridad</a>
+                <a class="nav-link" href="#derechos">Tus derechos</a>
+                <a class="nav-link" href="#cambios">Cambios a esta política</a>
+                <a class="nav-link" href="#contacto">Contacto</a>
+              </nav>
+            </div>
+          </div>
+
+          <!-- Resumen -->
+          <section class="en-corto" aria-labelledby="titulo-corto">
+            <h2 id="titulo-corto">En pocas palabras</h2>
+            <ul>
+              <li>
+                <i class="fa-solid fa-car-side" aria-hidden="true"></i>
+                <span>Registramos los datos del vehículo y de su estancia para operar el estacionamiento.</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-camera" aria-hidden="true"></i>
+                <span>La foto del vehículo se usa solo en el momento para obtener sus datos y nunca se guarda.</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-ban" aria-hidden="true"></i>
+                <span>No vendemos ni rentamos datos personales.</span>
+              </li>
+            </ul>
+          </section>
+
+          <section class="seccion" id="responsable">
+            <h2><span class="icono"><i class="fa-solid fa-building" aria-hidden="true"></i></span>Responsable</h2>
+            <p class="mb-0">
+              ParkingPro es responsable del tratamiento de los datos personales que se recaban a través de su app y su
+              panel web. Cuando un estacionamiento usa ParkingPro para registrar vehículos, tratamos esos datos por cuenta
+              de dicho estacionamiento y solo para prestarle el servicio.
+            </p>
+          </section>
+
+          <section class="seccion" id="datos">
+            <h2><span class="icono"><i class="fa-solid fa-database" aria-hidden="true"></i></span>Datos que recabamos</h2>
+            <ul>
+              <li><strong>Del estacionamiento:</strong> datos del negocio y de contacto, y de su suscripción.</li>
+              <li><strong>Del vehículo:</strong> placas, tipo, color, marca, modelo, horarios de entrada y salida, e importe cobrado.</li>
+              <li><strong>De la operación:</strong> cortes de caja y datos técnicos de los dispositivos vinculados.</li>
+            </ul>
+            <p>
+              <strong>Fotografía del vehículo:</strong> se usa únicamente en el momento para obtener los datos del
+              vehículo y nunca se guarda en la tablet ni en nuestros servidores.
+            </p>
+            <p class="mb-0">No recabamos datos personales sensibles.</p>
+          </section>
+
+          <section class="seccion" id="finalidades">
+            <h2><span class="icono"><i class="fa-solid fa-bullseye" aria-hidden="true"></i></span>Para qué los usamos</h2>
+            <ul class="mb-0">
+              <li>Registrar entradas y salidas de vehículos, calcular tarifas y emitir tickets.</li>
+              <li>Realizar cortes de caja y respaldar la información del estacionamiento.</li>
+              <li>Administrar las cuentas, suscripciones y dispositivos vinculados.</li>
+              <li>Dar soporte, mantener la seguridad del servicio y cumplir obligaciones legales.</li>
+            </ul>
+          </section>
+
+          <section class="seccion" id="permisos">
+            <h2><span class="icono"><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i></span>Permisos de la app</h2>
+            <p class="mb-0">
+              La app usa la <strong>cámara</strong> para escanear tickets y tomar la foto del vehículo, y el
+              almacenamiento interno para funcionar sin conexión. No usa el micrófono ni la ubicación.
+            </p>
+          </section>
+
+          <section class="seccion" id="terceros">
+            <h2><span class="icono"><i class="fa-solid fa-share-nodes" aria-hidden="true"></i></span>Compartir datos</h2>
+            <p class="mb-0">
+              No vendemos, rentamos ni cedemos datos personales. Solo los compartimos con proveedores tecnológicos que
+              nos ayudan a prestar el servicio, como hospedaje y reconocimiento de imágenes, que pueden ubicarse fuera
+              de México y se rigen por sus propias políticas de privacidad, o cuando lo exija una autoridad competente.
+            </p>
+          </section>
+
+          <section class="seccion" id="conservacion">
+            <h2><span class="icono"><i class="fa-solid fa-lock" aria-hidden="true"></i></span>Conservación y seguridad</h2>
+            <p class="mb-0">
+              Conservamos los datos solo el tiempo necesario para prestar el servicio y cumplir obligaciones legales.
+              Aplicamos medidas de seguridad técnicas y administrativas, como comunicación cifrada y acceso restringido,
+              para protegerlos.
+            </p>
+          </section>
+
+          <section class="seccion" id="derechos">
+            <h2><span class="icono"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></span>Tus derechos</h2>
+            <p class="mb-0">
+              Puedes solicitar el acceso, rectificación, cancelación u oposición al tratamiento de tus datos (derechos
+              ARCO), así como revocar tu consentimiento, escribiendo a
+              <a href="mailto:privacidad@parkingpro.top" class="completar">privacidad@parkingpro.top</a>.
+              Atenderemos tu solicitud en los plazos que establece la ley.
+            </p>
+          </section>
+
+          <section class="seccion" id="cambios">
+            <h2><span class="icono"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></span>Cambios a esta política</h2>
+            <p class="mb-0">
+              Podemos actualizar esta política en cualquier momento. La versión vigente siempre estará publicada en esta
+              página con su fecha de actualización.
+            </p>
+          </section>
+
+          <section class="seccion" id="contacto">
+            <h2><span class="icono"><i class="fa-solid fa-envelope" aria-hidden="true"></i></span>Contacto</h2>
+            <div class="tarjeta-contacto">
+              <dl class="mb-0">
+                <dt>Correo de privacidad</dt>
+                <dd><a href="mailto:privacidad@parkingpro.top"><i class="fa-regular fa-envelope me-2" aria-hidden="true"></i>privacidad@parkingpro.top</a></dd>
+                <dt>Sitio web</dt>
+                <dd class="mb-0"><a href="https://parkingpro.top/"><i class="fa-solid fa-globe me-2" aria-hidden="true"></i>parkingpro.top</a></dd>
+              </dl>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+      <span>&copy; <span id="anio">2026</span> ParkingPro. Todos los derechos reservados.</span>
+      <a href="https://parkingpro.top/">parkingpro.top</a>
+    </div>
+  </footer>
+
+  <a href="#" class="btn-arriba" id="btnArriba" aria-label="Volver arriba">
+    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+  </a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('anio').textContent = new Date().getFullYear();
+
+    // Cerrar el índice móvil al elegir una sección
+    const indiceMovil = document.getElementById('indiceMovil');
+    indiceMovil.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        bootstrap.Collapse.getOrCreateInstance(indiceMovil).hide();
+      });
+    });
+
+    // Botón para volver arriba
+    const btnArriba = document.getElementById('btnArriba');
+    window.addEventListener('scroll', function () {
+      btnArriba.classList.toggle('visible', window.scrollY > 600);
+    }, { passive: true });
+    btnArriba.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0 });
+    });
+  </script>
+</body>
+</html>

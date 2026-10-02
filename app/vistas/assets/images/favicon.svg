@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="parkingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7" />
+      <stop offset="50%" stop-color="#0369A1" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0284C7" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#0284C7" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Background Squircle -->
+  <rect x="24" y="24" width="464" height="464" rx="108" fill="url(#parkingGrad)" filter="url(#shadow)" />
+  
+  <!-- Subtle Inner Border -->
+  <rect x="24" y="24" width="464" height="464" rx="108" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="6" />
+
+  <!-- Iconic Parking "P" with Automotive Silhouette -->
+  <!-- Vertical Stem -->
+  <path d="M168 120 H280 C340 120 376 155 376 215 C376 275 340 310 280 310 H228 V392 C228 398 222 404 216 404 H180 C174 404 168 398 168 392 V120 Z" fill="#FFFFFF" />
+  
+  <!-- "P" Inner Loop cutout with gradient -->
+  <path d="M228 178 V252 H276 C304 252 320 236 320 215 C320 194 304 178 276 178 H228 Z" fill="url(#parkingGrad)" />
+
+  <!-- PRO Accent Dot (Emerald Green Badge at bottom-right) -->
+  <circle cx="376" cy="376" r="44" fill="#10B981" stroke="#0F172A" stroke-width="8" />
+  <path d="M362 376 L372 386 L392 366" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

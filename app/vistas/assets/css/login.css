@@ -1,0 +1,84 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f7fe;
+    min-height: 100vh;
+}
+
+.login-container {
+    min-height: 100vh;
+}
+
+/* Banner lateral decorativo */
+.login-bg {
+    background: linear-gradient(135deg, #e58646 0%, #ed7c3a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-bg::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    top: -50px;
+    left: -50px;
+}
+
+.login-card {
+    border: none;
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    background: #ffffff;
+}
+
+.form-control {
+    border-radius: 0.6rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    font-size: 0.95rem;
+}
+
+.form-control:focus {
+    border-color: #f1a863;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.input-group-text {
+    border-radius: 0.6rem;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+}
+
+.toggle-password {
+    cursor: pointer;
+}
+
+/* Mis estilos personalizados */
+span.is-invalid {
+    position: absolute;
+    bottom: -18px;
+    left: 10px;
+    font-size: 11px;
+    color: #dc3545;
+}
+
+@media (max-width: 991.98px) {
+    .login-container {
+        min-height: 100vh;
+        background: #fff;
+    }
+
+    .login-container > .col-lg-6 {
+        width: 100%;
+        min-height: 100vh;
+    }
+}

@@ -1,0 +1,99 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f7fe;
+    min-height: 100vh;
+}
+
+.login-container {
+    min-height: 100vh;
+}
+
+/* Banner lateral decorativo */
+.login-bg {
+    background: linear-gradient(135deg, #FFFDF9 0%, #F8F3EA 50%, #EFE7DA 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-bg::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    top: -50px;
+    left: -50px;
+}
+
+.login-card {
+    border: none;
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    background: #ffffff;
+}
+
+.form-control {
+    border-radius: 0.6rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    font-size: 0.95rem;
+}
+
+.form-control:focus {
+    border-color: #f1a863;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.input-group-text {
+    border-radius: 0.6rem;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+}
+
+.toggle-password {
+    cursor: pointer;
+}
+
+/* Mis estilos personalizados */
+span.is-invalid {
+    position: absolute;
+    bottom: -18px;
+    left: 10px;
+    font-size: 11px;
+    color: #dc3545;
+}
+
+/* Color Dorado personalizado */
+.text-gold {
+    color: #99752a !important;
+    transition: color 0.2s ease;
+}
+
+.text-gold:hover {
+    color: #dfba6b !important;
+}
+
+.btn-gold {
+    background-color: #dfba6b;
+    border-color: #dfba6b;
+}
+
+.btn-gold:hover,
+.btn-gold:focus,
+.btn-gold:active {
+    background-color: #99752a !important;
+    border-color: #99752a !important;
+    color: #ffffff !important;
+}
+
+/* Modales personalizados */
+.modal-content {
+    overflow: hidden;
+}
+
+#formReContra .form-control:focus {
+    border-color: #dfba6b;
+    box-shadow: 0 0 0 4px rgba(223, 186, 107, 0.15);
+}
