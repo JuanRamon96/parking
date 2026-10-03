@@ -384,6 +384,20 @@ function manejarSincronizacion($model, array $data): void
                  LIMIT 1"
             );
 
+            // Transición: un corte que se subió antes con el subir.php viejo no tiene ID.
+            // Si coincide por nombre y apertura, se le asigna el ID en lugar de duplicarlo.
+            if ($uidCorte !== '' && (!is_array($check) || count($check) === 0)) {
+                $check = $model->_consultar(
+                    "SELECT ID_Detalle_Caja FROM detalles_caja
+                     WHERE Dispositivo = '$dispositivo' AND Dispositivo_UID IS NULL
+                       AND Fecha_Apertura = '$fechaApert'
+                     LIMIT 1"
+                );
+                if (is_array($check) && count($check) > 0) {
+                    $model->_insertar("UPDATE detalles_caja SET Dispositivo_UID = $uidCorteSql WHERE ID_Detalle_Caja = " . intval($check[0]['ID_Detalle_Caja']));
+                }
+            }
+
             if (is_array($check) && count($check) > 0) {
                 $idDetalle = intval($check[0]['ID_Detalle_Caja']);
                 $model->_insertar(
@@ -490,6 +504,23 @@ function manejarSincronizacion($model, array $data): void
                  LIMIT 1
                  FOR UPDATE"
             );
+
+            // Transición: un ticket que se subió antes con el subir.php viejo no tiene ID.
+            // Si coincide por nombre de tablet + folio + entrada, se le asigna el ID
+            // en lugar de insertarlo duplicado.
+            if ($uidRaw !== '' && (!is_array($check) || count($check) === 0)) {
+                $check = $model->_consultar(
+                    "SELECT ID_Registro, Estatus, Dispositivo_Cobro, Dispositivo_Cobro_UID, Dispositivo, Salida FROM registros
+                     WHERE Dispositivo = '$dispositivo' AND Dispositivo_UID IS NULL
+                       AND Folio_Tablet = '$folio'
+                       AND (Entrada = '$entrada' OR Fecha_Registro = '$fechaReg')
+                     LIMIT 1
+                     FOR UPDATE"
+                );
+                if (is_array($check) && count($check) > 0) {
+                    $model->_insertar("UPDATE registros SET Dispositivo_UID = $uidSql WHERE ID_Registro = " . intval($check[0]['ID_Registro']));
+                }
+            }
 
             if (is_array($check) && count($check) > 0) {
                 $existente   = $check[0];
